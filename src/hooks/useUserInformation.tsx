@@ -69,7 +69,10 @@ export const useUserInformation = ({ user }: { user: User | null }) => {
       if (error) throw error
       alert('Profile updated!')
     } catch (error) {
-      alert('Error updating the data!')
+      if (error instanceof Error) {
+        console.error(error.message)
+        alert('Error updating the data!' + error.message)
+      }
     } finally {
       setLoading(false)
     }
